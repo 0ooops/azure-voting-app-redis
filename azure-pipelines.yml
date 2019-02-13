@@ -13,5 +13,7 @@ variables:
   imageName: 'your-container-image-name:$(build.buildId)'
 
 steps:
+- bash: sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  displayName: 'download docker composer'
 - script: docker-composer up -d
   displayName: 'docker-composer up'
