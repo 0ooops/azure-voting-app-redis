@@ -33,7 +33,7 @@ steps:
 - bash: 'docker build -f $(System.DefaultWorkingDirectory)/**/Dockerfile -t $(AcrName).azurecr.io/$(ImageName):$(Build.BuildId) -t $(AcrName).azurecr.io/$(ImageName):latest $(System.DefaultWorkingDirectory)' 
   displayName: 'docker build'
 
-- bash: 'docker login $(AcrName).azurecr.io -u $(AcrLogin) -p $(AcrPassword)' 
+- bash: 'docker login $(AcrName).azurecr.io -u $(AcrLogin) --password-stdin $(AcrPassword)' 
   displayName: 'docker login'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
 
